@@ -30,7 +30,7 @@ while true; do
 	check_desktop
 
 	# check update status of BSP packages
-	local mark=$(apt-mark showhold | egrep "linux|armbian")
+	local mark=$(apt-mark showhold | egrep "linux|armbian-bsp|armbian-firmware|armbian-*-desktop")
 
 	# check if installer is on the system
 	if [[ -f /usr/sbin/armbian-install ]]; then
@@ -60,7 +60,7 @@ while true; do
 	[[ -f /boot/boot.ini ]] && LIST+=( "Bootscript" "Edit boot script" )
 
 	if [[ -f /etc/default/cpufrequtils ]]; then
-		LIST+=( "CPU" "Set CPU speed and governor" )
+		LIST+=( "CPU" "Set CPU speed and governor. Deprecated." )
 	fi
 
 	AVAHIDSTATUS=$(service avahi-daemon status 2> /dev/null | grep -w active | grep -w running)
